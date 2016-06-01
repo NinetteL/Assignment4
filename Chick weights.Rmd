@@ -1,0 +1,35 @@
+---
+title: "Chicken Weights"
+author: "Ninette Lotter"
+date: "1 June 2016"
+output: github_document
+---
+
+Null hypothesis: no difference in weights
+
+Alternative hypothesis: difference in weights
+
+```{r, echo=FALSE}
+chickenweights <- read.csv('chick-weights.csv')
+boxplot(weight~feed, data = chickenweights)
+```
+
+### Statistical test
+
+Kruskal-Wallis test for unpaired non-parametric data.
+
+Assumption:
+
+1. The errors are independent
+(the 'error' refers to the difference between each value and the median)
+
+2. Data are unmatched (for unpaired data) / matching is effective (for repeated measures data)
+
+3. Samples are drawn from populations with the same shape distributions.
+
+```{r, echo=FALSE}
+kruskal.test(weight~feed, data = chickenweights)
+```
+From the results p < 0.05. The p-value indicates that there is a difference between chicken weights according to feed. Therefore we can reject the null hypothesis and accept the altenative hypothesis.
+
+
